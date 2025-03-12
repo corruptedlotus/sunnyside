@@ -1,0 +1,58 @@
+{
+	"folders": [
+		{
+			"name": "core",
+			"path": "packages/core"
+		},
+		{
+			"name": "model",
+			"path": "packages/model"
+		},
+		{
+			"name": "client/native",
+			"path": "packages/client/native"
+		},
+		{
+			"name": "client/web",
+			"path": "packages/client/web"
+		},
+		{
+			"name": "root",
+			"path": "."
+		}
+	],
+	"settings": {
+		"window.title": "${dirty}code${separator}${remoteName}${separator}${rootNameShort}${separator}${activeEditorMedium}",
+		"window.titleSeparator": " • ",
+		"workbench.colorCustomizations": {
+			"activityBar.foreground": "#dd8924",
+			"activityBar.activeBorder": "#dd8924",
+			"activityBarBadge.background": "#2d2523",
+			"activityBarBadge.foreground": "#e7e7e7",
+			"statusBarItem.hoverBackground": "#693e20",
+			"statusBarItem.remoteBackground": "#422714",
+			"statusBarItem.remoteForeground": "#e7e7e7",
+			"tab.activeBorderTop": "#dd8924",
+			"button.background": "#2d2523",
+			"button.foreground": "#dd8924",
+			"button.hoverBackground": "#000000",
+			"titleBar.activeBackground": "#dd8a2413",
+			"titleBar.inactiveForeground": "#dd8924",
+		},
+		"files.exclude": {
+			"**/.git": true,
+			"**/.svn": true,
+			"**/.hg": true,
+			"**/CVS": true,
+			"**/.DS_Store": true,
+			"**/Thumbs.db": true,
+			"packages": true,
+			
+		}
+	},
+	"extensions": {
+		"recommendations": [
+			"ms-dotnettools.csharp"
+		]
+	}
+}
