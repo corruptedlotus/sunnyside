@@ -47,17 +47,12 @@ public class Directive
 {
 	// Meta
 	public Guid Id { get; init; }
-	public DateTime CreatedOn { get; set; }
 	public required TaskType Type { get; set; }
 
 	// Properties
 	public required string Name { get; set; }
+	public string Description { get; set; } = string.Empty;
 	public bool Immediate { get; set; } = false;
-	public TaskManagement? Management { get; set; } = TaskManagement.Oneshot;
-	public TaskObjective? Objective { get; set; }
-
-	// Transforms
-
-	public void MoveToLongBacklog() => Immediate = false;
-	public void MoveToShortBacklog() => Immediate = true;
+	public TaskManagement Management { get; set; } = TaskManagement.Oneshot;
+	public TaskObjective? Objective { get; set; } = TaskObjective.DoneOnly;
 }

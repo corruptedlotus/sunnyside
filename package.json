@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "@a11d/api": "^0.3.2",
+    "@a11d/api-dotnet": "^0.0.10"
+  }
+}

@@ -3,7 +3,7 @@ import { Application } from '@a11d/lit-application'
 
 Theme.accent.value = 'rgb(221, 137, 36)'
 
-@component('sunnyside-app')
+@component('sunny-app')
 export class Sunnyside extends Application {
 	static override get styles() {
 		return css`

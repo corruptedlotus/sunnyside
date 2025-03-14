@@ -1,6 +1,5 @@
 import { build, context } from 'esbuild'
 import { resolve } from 'path'
-import copy from 'esbuild-plugin-copy'
 
 const args = process.argv.slice(2)
 const mode = args.includes('--mode=development') ? 'development' : 'production'
@@ -8,8 +7,7 @@ const isWatch = args.includes('--watch')
 
 var buildConf = {
 	entryPoints: {
-		modules: './modules/index.ts',
-		admin: './admin/index.ts',
+		app: './app/index.ts',
 	},
 	outdir: mode === 'production' ? resolve('../../bin/client/dist') : resolve('../../dbg/client/dist'),
 	bundle: true,
@@ -19,22 +17,6 @@ var buildConf = {
 	target: 'esnext',
 	platform: 'browser',
 	loader: { '.ts': 'ts' },
-	plugins: [
-		copy({
-			resolveFrom: 'out',
-			assets: [
-				{
-					from: ['./assets/**/*'],
-					to: ['../assets'],
-				},
-				{
-					from: ['./static/**/*'],
-					to: ['../'],
-				},
-			],
-			watch: true,
-		}),
-	],
 	tsconfig: './tsconfig.json',
 }
 

@@ -2,9 +2,9 @@ namespace Anovase.Sunnyside.Cycles;
 
 public enum CycleStatus
 {
-	Planning,
-	Active,
-	Closed,
+	Planning = 0,
+	Active = 1,
+	Closed = -1,
 }
 
 public class Cycle
@@ -12,7 +12,6 @@ public class Cycle
 	#region Meta
 
 	public Guid Id { get; init; }
-	public Cycle? Previous { get; init; }
 	
 	#endregion
 
@@ -40,10 +39,5 @@ public class Cycle
 	{
 		Status = CycleStatus.Closed;
 		End = time;
-	}
-
-	public Cycle PlanNext()
-	{
-		return new Cycle { Previous = this };
 	}
 }

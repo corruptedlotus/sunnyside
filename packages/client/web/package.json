@@ -1,9 +1,21 @@
 {
-  "dependencies": {
-    "@3mo/del": "^0.1.87",
-    "@a11d/eslint-config": "^1.0.3",
-    "@a11d/lit": "^0.9.10",
-    "@a11d/lit-application": "^0.6.1",
-    "@a11d/lit-application-native": "^0.2.0"
-  }
+	"name": "sunnyside",
+	"author": "corruptedlotus",
+	"displayName": "Sunnyside",
+	"scripts": {
+		"dev": "node esbuild.mjs --mode=development --watch",
+		"dbuild": "node esbuild.mjs --mode=development",
+		"build": "node esbuild.mjs",
+		"lint": "eslint ."
+	},
+	"devDependencies": {
+		"@a11d/eslint-config": "^1.0.3",
+		"esbuild": "^0.25.1"
+	},
+	"dependencies": {
+		"@3mo/del": "^0.1.87",
+		"@a11d/lit": "^0.9.10",
+		"@a11d/lit-application": "^0.6.1",
+		"@a11d/lit-application-native": "^0.2.0"
+	}
 }

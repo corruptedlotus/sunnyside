@@ -76,4 +76,9 @@ public class BacklogService(DataContext Database) : IBacklogService
 			return q.AsEnumerable();
 		});
 	}
+
+	public async Task<IEnumerable<TaskType>> GetAllTypes()
+	{
+		return await Task.Run(() => Database.TaskTypes.AsEnumerable());
+	}
 }

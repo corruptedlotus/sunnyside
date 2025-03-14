@@ -11,11 +11,14 @@ public interface ICycleService
 	Task<Cycle> GetActiveAsync();
 	Task<Cycle> NewAsync();
 	Task<Cycle> StartAsync(Guid id, DateTime time);
+	Task<Cycle> StartNowAsync(Guid id);
 	Task<Cycle> EndActiveAsync(DateTime time);
+	Task<Cycle> EndNowAsync();
 
 	Task<TaskInstance> NewTask(TaskInstance item);
-	Task<TaskInstance> EditTask(TaskInstance item); 
+	Task<TaskInstance> EditTask(TaskInstance item);
 	Task DeleteTask(Guid id);
+	Task DeleteTask(IEnumerable<Guid> ids);
 }
 
 public class BacklogService(DataContext Database) : ICycleService
@@ -27,6 +30,15 @@ public class BacklogService(DataContext Database) : ICycleService
 	{
 		var e = await Tasks.FindAsync(id) ?? throw new EntityNotFoundException(typeof(Cycle));
 		Tasks.Remove(e);
+		await Database.SaveChangesAsync();
+
+		return;
+	}
+
+	public async Task DeleteTask(IEnumerable<Guid> ids)
+	{
+		var e = Tasks.Where(x => ids.Contains(x.Id));
+		Tasks.RemoveRange(e);
 		await Database.SaveChangesAsync();
 
 		return;
@@ -53,9 +65,9 @@ public class BacklogService(DataContext Database) : ICycleService
 		return e;
 	}
 
-	public async Task<Cycle> GetActiveAsync()
+	public async Task<Cycle?> GetActiveAsync()
 	{
-		var e = await Cycles.AsNoTracking().Where(x => x.Status == CycleStatus.Active).FirstAsync();
+		var e = await Cycles.AsNoTracking().Where(x => x.Status == CycleStatus.Active).FirstOrDefaultAsync();
 		return e;
 	}
 
@@ -96,4 +108,7 @@ public class BacklogService(DataContext Database) : ICycleService
 
 		return e;
 	}
+
+	public Task<Cycle> StartNowAsync(Guid id) => StartAsync(id, DateTime.UtcNow);
+	public Task<Cycle> EndNowAsync() => EndActiveAsync(DateTime.UtcNow);
 }
