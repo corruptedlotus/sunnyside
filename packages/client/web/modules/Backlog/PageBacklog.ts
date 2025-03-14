@@ -14,7 +14,7 @@ export class PageBacklog extends EntitiesPageComponent<SDK.Directive> {
 			<lit-page fullHeight>
 				<mo-card>
 					<mo-entity-data-grid pagination='auto'
-						.fetch=${() => Api.get<Array<SDK.Directive>>('/backlog/list')}
+						.fetch=${() => Api.get<Array<SDK.Directive>>('/backlog')}
 						.delete=${(entity: SDK.Directive) => Api.delete(`/backlog/${entity.id}`)}
 						.createOrEdit=${DialogDirective}
 					>

@@ -6,28 +6,9 @@ namespace Anovase.Sunnyside.Backlog;
 
 public record BacklogDisplayArgs(bool? Immediate);
 
-public interface IBacklogService
-{
-	Task<IEnumerable<Directive>> ListAsync(BacklogDisplayArgs immediate);
-	Task<IEnumerable<Directive>> SearchAsync(string query);
-	Task<Directive> GetAsync(Guid id);
-	
-	Task<Directive> AddAsync(Directive item);
-	Task<Directive> EditAsync(Directive item);
-	Task DeleteAsync(Guid id);
-	Task DeleteAsync(IEnumerable<Guid> ids);
-}
-
-public class BacklogService(DataContext Database) : IBacklogService
+public class BacklogService(DataContext Database)
 {
 	protected DbSet<Directive> Backlog => Database.Backlog;
-
-	public async Task<Directive> AddAsync(Directive item)
-	{
-		var e = await Backlog.AddAsync(item);
-		await Database.SaveChangesAsync();
-		return e.Entity;
-	}
 
 	public async Task DeleteAsync(Guid id)
 	{
@@ -44,7 +25,7 @@ public class BacklogService(DataContext Database) : IBacklogService
 		await Database.SaveChangesAsync();
 	}
 
-	public async Task<Directive> EditAsync(Directive item)
+	public async Task<Directive> SaveAsync(Directive item)
 	{
 		var e = Backlog.Update(item);
 		await Database.SaveChangesAsync();

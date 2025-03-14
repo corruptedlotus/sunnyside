@@ -9,7 +9,7 @@ export class PageDashboard extends PageComponent {
 	readonly router = new RouterController(this, [], {
 		fallback: {
 			render: () => html`
-				<mo-empty-state icon='touch_app'>Select a page</mo-empty-state>
+				<mo-empty-state icon='touch_app'>Select a Page</mo-empty-state>
 			`
 		}
 	})

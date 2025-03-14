@@ -11,8 +11,13 @@ export class PageCycle extends EntitiesPageComponent<SDK.TaskInstance> {
 
 	protected currentCycle?: SDK.Cycle
 
-	protected async startNew() {
-		await Api.get('/cycle/startnew')
+	protected async startNewCycle() {
+		await Api.patch('/cycle/startnew')
+		this.refresh()
+	}
+
+	protected async finishCycle() {
+		await Api.patch('cycle/finish')
 		this.refresh()
 	}
 
@@ -27,14 +32,16 @@ export class PageCycle extends EntitiesPageComponent<SDK.TaskInstance> {
 						.create=${this.currentCycle?.tasks.push(new SDK.TaskInstance())}
 						@cellEdit=${(cell: DataGridCell<any, SDK.TaskInstance>) => Api.put('/cycle/task', cell.data)}
 					>
-						<mo-empty-state icon='hourglass_disabled'>
+						<mo-empty-state slot='error-no-content' icon='hourglass_disabled'>
 							<div>No Active Cycle</div>
-							<mo-button @click=${this.startNew}>Start New</mo-button>
+							<mo-button @click=${this.startNewCycle}>Start New</mo-button>
 						</mo-empty-state>
 
+						<mo-button slot='toolbar' @click=${this.finishCycle}>Finish Cycle</mo-button>
+
 						<mo-data-grid-column-boolean dataSelector=${getKeyPath<SDK.TaskInstance>('status')}></mo-data-grid-column-boolean>
-						<mo-data-grid-column-number width='30px' heading='TRACK' dataSelector=${getKeyPath<SDK.TaskInstance>('timeTracked')}></mo-data-grid-column-number>
-						<mo-data-grid-column-number width='30px' heading='ALLOC' dataSelector=${getKeyPath<SDK.TaskInstance>('timeAllocated')}></mo-data-grid-column-number>
+						<mo-data-grid-column-number width='30px' heading='TRAC/' dataSelector=${getKeyPath<SDK.TaskInstance>('timeTracked')}></mo-data-grid-column-number>
+						<mo-data-grid-column-number width='30px' heading='/ALOC' dataSelector=${getKeyPath<SDK.TaskInstance>('timeAllocated')}></mo-data-grid-column-number>
 						<mo-data-grid-column-text heading='Directive' dataSelector=${getKeyPath<SDK.TaskInstance>('directive.name')}></mo-data-grid-column-text>
 						<mo-data-grid-column-text heading='Name' dataSelector=${getKeyPath<SDK.TaskInstance>('name')}></mo-data-grid-column-text>
 					</mo-entity-data-grid>

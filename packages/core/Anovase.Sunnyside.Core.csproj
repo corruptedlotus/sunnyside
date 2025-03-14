@@ -23,4 +23,14 @@
 		<ProjectReference Include="..\model\Anovase.Sunnyside.Model.csproj" />
 	</ItemGroup>
 
+	<PropertyGroup Condition="'$(Configuration)' == 'Release'">
+		<BaseOutputPath>..\..\bin\server</BaseOutputPath>
+		<OutputPath>..\..\bin\server</OutputPath>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)' != 'Release'">
+		<BaseOutputPath>..\..\dbg\server</BaseOutputPath>
+		<OutputPath>..\..\dbg\server</OutputPath>
+		<GenerateProgramFile>false</GenerateProgramFile>
+	</PropertyGroup>
+
 </Project>
