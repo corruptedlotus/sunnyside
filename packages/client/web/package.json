@@ -2,6 +2,7 @@
 	"name": "sunnyside",
 	"author": "corruptedlotus",
 	"displayName": "Sunnyside",
+	"version": "0.0.1",
 	"scripts": {
 		"dev": "node esbuild.mjs --mode=development --watch",
 		"dbuild": "node esbuild.mjs --mode=development",
