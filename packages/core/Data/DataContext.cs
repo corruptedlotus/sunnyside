@@ -4,28 +4,16 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Anovase.Sunnyside.Data;
 
-public interface IDatabase
-{
-	DbSet<Directive> Backlog { get; set; }
-	DbSet<Cycle> Cycles { get; set; }
-	DbSet<TaskType> TaskTypes { get; set; }
-
-	Task SaveAsync();
-}
-
-public class DataContext : DbContext, IDatabase
+public class DataContext : DbContext
 {
 	public DbSet<Directive> Backlog { get; set; }
 	public DbSet<Cycle> Cycles { get; set; }
 	public DbSet<TaskType> TaskTypes { get; set; }
 
+	public DataContext(DbContextOptions<DataContext> options) : base(options) { }
+
 	public async Task InitializeAsync()
 	{
 		await Database.MigrateAsync();
-	}
-
-	public async Task SaveAsync()
-	{
-		await SaveChangesAsync();
 	}
 }
