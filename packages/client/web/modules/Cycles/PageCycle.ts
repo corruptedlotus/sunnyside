@@ -91,6 +91,15 @@ export class PageCycle extends EntitiesPageComponent<SDK.TaskInstance> {
 						<mo-data-grid-column-number width='60px' heading='/ALOC' dataSelector=${getKeyPath<SDK.TaskInstance>('timeAllocated')}></mo-data-grid-column-number>
 						<sunny-data-grid-column-directive heading='Directive' dataSelector=${getKeyPath<SDK.TaskInstance>('directive')}></sunny-data-grid-column-directive>
 						<mo-data-grid-column-text heading='Name' dataSelector=${getKeyPath<SDK.TaskInstance>('name')}></mo-data-grid-column-text>
+					
+						<mo-data-grid-footer-sum heading='Tracked' slot='sum'>
+							${this.currentCycle?.tasks.reduce((c, val) => c + val.timeTracked, 0)}
+						</mo-data-grid-footer-sum>
+						<span slot='sum'>/</span>
+						<mo-data-grid-footer-sum heading='Allocated' slot='sum'>
+							${this.currentCycle?.tasks.reduce((c, val) => c + val.timeAllocated, 0)}
+						</mo-data-grid-footer-sum>
+
 					</mo-entity-data-grid>
 
 					${!this.currentCycle ? nothing : this.newTaskTemplate}
