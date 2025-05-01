@@ -1,6 +1,4 @@
 import '@a11d/lit'
-import '@a11d/lit-application'
-import '@a11d/lit-application-native'
 import '@3mo/empty-state'
 import '@3mo/split-page-host'
 import '@3mo/list'

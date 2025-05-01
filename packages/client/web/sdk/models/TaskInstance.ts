@@ -8,13 +8,20 @@ export const enum TaskStatus {
 }
 
 export class TaskInstance {
-	id: string = null!
+	id = '00000000-0000-0000-0000-000000000000'
+	cycleId = '00000000-0000-0000-0000-000000000000'
 	directive: Directive = null! //TODO: can this be nullable?
-	cycle: Cycle = null!
 
 	name?: string
 	timeAllocated = 0
 	timeTracked = 0
 	objective? = TaskObjective.doneOnly
 	status = TaskStatus.open
+
+	get done() { return this.status === TaskStatus.done }
+	set done(value: boolean) { this.status = value ? TaskStatus.done : TaskStatus.open }
+
+	constructor(cycleId: string) {
+		this.cycleId = cycleId
+	}
 }

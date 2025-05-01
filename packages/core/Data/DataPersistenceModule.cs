@@ -10,8 +10,8 @@ public class DataPersistenceModule : Module
 	protected static string? DATABASE_PASSWORD => Environment.GetEnvironmentVariable("DATABASE_PASSWORD");
 
 	protected static string ConnectionString => DATABASE_SERVER is null || DATABASE_USER is null || DATABASE_PASSWORD is null
-		? "Data Source=localhost;Database=HeavenFlooringPWS;Integrated Security=True;Encrypt=False;"
-		: $"Server={DATABASE_SERVER};User ID={DATABASE_USER};Database=HeavenFlooringPWS;Password={DATABASE_PASSWORD};Encrypt=False;";
+		? "Data Source=localhost;Database=SunnysideSA;Integrated Security=True;Encrypt=False;"
+		: $"Server={DATABASE_SERVER};User ID={DATABASE_USER};Database=SunnysideSA;Password={DATABASE_PASSWORD};Encrypt=False;";
 
 	public override void ConfigureServices(IServiceCollection services)
 	{

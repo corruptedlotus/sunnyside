@@ -11,12 +11,19 @@
 	},
 	"devDependencies": {
 		"@a11d/eslint-config": "^1.0.3",
-		"esbuild": "^0.25.1"
+		"esbuild": "^0.25.1",
+		"esbuild-plugin-copy": "^2.1.1",
+		"typescript": "^5.8.3"
 	},
 	"dependencies": {
-		"@3mo/del": "^0.1.87",
-		"@a11d/lit": "^0.9.10",
-		"@a11d/lit-application": "^0.6.1",
-		"@a11d/lit-application-native": "^0.2.0"
+		"@3mo/del": "x",
+		"@a11d/api": "x",
+		"@a11d/api-dotnet": "x",
+		"@a11d/api-jwt": "x",
+		"@a11d/lit": "x",
+		"@a11d/lit-application": "x",
+		"@a11d/lit-application-native": "x",
+		"@a11d/local-storage": "x",
+		"js-sha256": "^0.11.0"
 	}
 }

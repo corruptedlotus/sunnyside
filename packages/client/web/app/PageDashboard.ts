@@ -23,7 +23,7 @@ export class PageDashboard extends PageComponent {
 						<mo-navigation-list-item icon='view_in_ar' ${routerLink(new PageBacklog)}>Backlog</mo-navigation-list-item>
 					</mo-flex>
 
-					${this.router.outlet}
+					${this.router.outlet()}
 				</mo-split-page-host>
 			</lit-page>
 		`

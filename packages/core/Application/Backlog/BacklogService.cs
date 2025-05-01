@@ -53,7 +53,7 @@ public class BacklogService(DataContext Database)
 	public async Task<IEnumerable<Directive>> SearchAsync(string query)
 	{
 		return await Task.Run(delegate {
-			var q = Backlog.AsNoTracking().Where(x => EF.Functions.FreeText(x.Name, query));
+			var q = Backlog.AsNoTracking().Where(x => x.Name.Contains(query));
 			return q.AsEnumerable();
 		});
 	}

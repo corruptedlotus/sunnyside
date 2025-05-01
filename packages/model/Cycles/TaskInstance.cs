@@ -1,3 +1,5 @@
+using System.ComponentModel;
+using System.Text.Json.Serialization;
 using Anovase.Sunnyside.Backlog;
 
 namespace Anovase.Sunnyside.Cycles;
@@ -15,7 +17,10 @@ public class TaskInstance
 	// Meta
 	public Guid Id { get; set; }
 	public Directive Directive { get; set; } = null!;
+
+	[JsonIgnore]
 	public Cycle Cycle { get; set; } = null!;
+	public Guid CycleId { get; set; } = Guid.Empty;
 
 	// Properties
 	public string? Name { get; set; }

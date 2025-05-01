@@ -7,9 +7,9 @@ const isWatch = args.includes('--watch')
 
 var buildConf = {
 	entryPoints: {
-		app: './app/index.ts',
+		app: './index.ts',
 	},
-	outdir: mode === 'production' ? resolve('../../bin/client/dist') : resolve('../../dbg/client/dist'),
+	outdir: mode === 'production' ? resolve('../../../bin/client') : resolve('../../../dbg/client'),
 	bundle: true,
 	minify: mode === 'production',
 	sourcemap: mode === 'development',
@@ -23,5 +23,8 @@ var buildConf = {
 if (!isWatch) {
 	await build(buildConf).catch(() => process.exit(1))
 } else {
-	await context(buildConf).then(ctx => ctx.watch()).catch(() => process.exit(1))
+	await context(buildConf).then(ctx => {
+		ctx.watch()
+		console.log('✅ BUILD SUCCESS')
+	}).catch(() => process.exit(1))
 }

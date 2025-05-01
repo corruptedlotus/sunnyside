@@ -11,7 +11,7 @@ export const enum TaskObjective {
 }
 
 export class Directive {
-	id: string = null!
+	id = '00000000-0000-0000-0000-000000000000'
 	type: TaskType = null!
 
 	name: string = null!

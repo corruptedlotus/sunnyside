@@ -3,11 +3,11 @@ namespace Anovase.Sunnyside.WebClient;
 
 public class WebClientModule : Module
 {
-	public override async void ConfigureEndpoints(IEndpointRouteBuilder endpoints)
+	public override void ConfigureEndpoints(IEndpointRouteBuilder endpoints)
 	{
-		endpoints.MapGet("/*", async (HttpContext context) => {
-			if (context.Request.Path.StartsWithSegments("/_webapp"))
-				return;
+		endpoints.MapGet("/{path?}", async (HttpContext context) => {
+			/*if (context.Request.Path.StartsWithSegments("/_webapp"))
+				return;*/
 				
 			await context.Response.WriteAsync("""
 				<head>

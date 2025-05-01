@@ -1,6 +1,7 @@
 ﻿global using A11d.Module;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Anovase.Sunnyside;
 using Microsoft.Extensions.FileProviders;
 
 var hostBuilder = WebApplication.CreateBuilder(args);
@@ -19,13 +20,15 @@ var env = webHost.Services.GetRequiredService<IWebHostEnvironment>();
 
 webHost.UseStaticFiles(new StaticFileOptions
 {
-	RequestPath = new PathString("/_webclient"),
+	RequestPath = new PathString("/_webapp"),
 #if DEBUG
 	FileProvider = new PhysicalFileProvider(Path.Combine(env.ContentRootPath, @"../../dbg/client")),
 #else
 	FileProvider = new PhysicalFileProvider(Path.Combine(env.ContentRootPath, @"../client")),
 #endif
 });
+
+webHost.UseMiddleware<ErrorMessageMiddleware>();
 
 webHost.Configure<SunnysideCore>().Run("http://0.0.0.0:13666");
 

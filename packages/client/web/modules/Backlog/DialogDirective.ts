@@ -23,7 +23,7 @@ export class DialogDirective extends EntityDialogComponent<SDK.Directive, Dialog
 					<mo-flex gap='10px'>
 						<mo-field-text label='Name' ${bind('name')}></mo-field-text>
 						
-						<mo-field-select label='Type' ${bind('type')}></mo-field-select>
+						<sunny-select-type .data=${bind('type')}></sunny-select-type>
 
 						<mo-field-select label='Management' ${bind('management')}>
 							<mo-option value=${SDK.TaskManagement.oneshot}>Oneshot</mo-option>

@@ -48,7 +48,8 @@
 			"**/Thumbs.db": true,
 			"packages": true,
 			
-		}
+		},
+		"powershell.cwd": "d:\\Repo\\_Personal\\sunnyside\\packages\\core"
 	},
 	"extensions": {
 		"recommendations": [

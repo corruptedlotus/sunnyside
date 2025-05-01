@@ -1,16 +1,17 @@
-import { html } from '@a11d/lit'
+import { component, html } from '@a11d/lit'
 import { DataGridColumnComponent } from '@3mo/del'
 import { SDK } from 'modules'
 
-export class DataGridColumnDirective extends DataGridColumnComponent<SDK.TaskInstance, SDK.Directive> {
+@component('sunny-data-grid-column-directive')
+export class DataGridColumnDirective<TData> extends DataGridColumnComponent<TData, SDK.Directive> {
 
-	override getContentTemplate(value: SDK.Directive, _: SDK.TaskInstance) {
+	override getContentTemplate(value: SDK.Directive, _: TData) {
 		return html`
-			<span>${value.name}</span>
+			${value.name}
 		`
 	}
 
-	override getEditContentTemplate(value: SDK.Directive, data: SDK.TaskInstance) {
+	override getEditContentTemplate(value: SDK.Directive, data: TData) {
 		return html`
 			<sunny-select-directive
 				.data=${value}
@@ -23,6 +24,6 @@ export class DataGridColumnDirective extends DataGridColumnComponent<SDK.TaskIns
 
 declare global {
 	interface HTMLElementTagNameMap {
-		'sunny-data-grid-column-directive': DataGridColumnDirective
+		'sunny-data-grid-column-directive': DataGridColumnDirective<unknown>
 	}
 }

@@ -51,12 +51,12 @@ public class CycleService(DataContext Database)
 
 	public async Task<Cycle?> GetActiveAsync()
 	{
-		var e = await Cycles.AsNoTracking().Where(x => x.Status == CycleStatus.Active).FirstOrDefaultAsync();
+		var e = await Cycles.Include(x => x.Tasks).AsNoTracking().Where(x => x.Status == CycleStatus.Active).FirstOrDefaultAsync();
 		return e;
 	}
 
 	public async Task<Cycle> GetAsync(Guid id)
-		=> await Cycles.FindAsync(id) ?? throw new EntityNotFoundException(typeof(Cycle));
+		=> await Cycles.Include(x => x.Tasks).FirstOrDefaultAsync(x => x.Id == id) ?? throw new EntityNotFoundException(typeof(Cycle));
 
 	public async Task<Cycle> NewAsync()
 	{
@@ -72,7 +72,7 @@ public class CycleService(DataContext Database)
 
 	public async Task<Cycle> StartAsync(Cycle cycle, DateTime time)
 	{
-		if (Cycles.Any(x => x.Status == CycleStatus.Active || x.End >= time))
+		if (Cycles.Any(x => x.Id != cycle.Id && (x.Status == CycleStatus.Active || (x.End ?? DateTime.MinValue) >= time)))
 			throw new InvalidOperationException("New cycle cannot collide with any previous ones.");
 
 		if (cycle.Status != CycleStatus.Planning)
